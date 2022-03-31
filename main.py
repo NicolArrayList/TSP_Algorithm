@@ -1,3 +1,3 @@
-from branch_and_bound import*
+from branch_and_bound import *
 
-apply_TSP()
+apply_BranchAndBound()

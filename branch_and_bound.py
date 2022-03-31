@@ -128,7 +128,7 @@ visited = [False] * N
 final_result = max_size
 
 
-def apply_TSP():
+def apply_BranchAndBound():
     # Adjacency matrix from the graph example in the report
     mat = [[0, 3, 1, 6, 1],
            [3, 0, 5, 2, 1],
@@ -145,4 +145,4 @@ def apply_TSP():
     for i in range(N + 1):
         print(chr(final_path[i] + 65), end=' ')
 
-    print(f"\nTSP is done in {toc - tic:0.7f} seconds")
+    print(f"\nBranch and Bound is done in {toc - tic:0.7f} seconds")
