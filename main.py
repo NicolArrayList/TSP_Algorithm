@@ -32,3 +32,4 @@ print("Best solution : \n - Best path : ", end=' ')
 for i in range(len(result[1])):
     print(chr(result[1][i] + 65), end=' ')
 print("\n - Best cost : " + str(result[0]))
+print(" - Best time elapsed : " + ("%.8f" % (result[2])))

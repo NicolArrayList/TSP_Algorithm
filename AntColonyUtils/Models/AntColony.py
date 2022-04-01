@@ -47,30 +47,30 @@ class AntColony:
 
         best_tour_cost = float('inf')
         current_solution = []
+        best_time = 0
+
         index = None
 
         if display is not None:
             index = display.register_plot()
 
         for it in range(iteration):
-            [best_tour_cost, current_solution] = self.cycle(best_tour_cost, current_solution)
+            [best_tour_cost, current_solution, best_time] = self.cycle(best_tour_cost, current_solution)
             self.update_pheromone()
-
-            t1_stop = perf_counter()
 
             print("\nCurrent solution : \n - current path : ", end=' ')
             for i in range(len(current_solution)):
                 print(chr(current_solution[i] + 65), end=' ')
             print("\n - current cost : " + str(best_tour_cost), end=' ')
-            print("\n - current time elapsed : " + ("%.6f" % (t1_stop-t1_start)) + "\t\t\t" + str([best_tour_cost]))
+            print("\n - current time elapsed : " + ("%.6f" % (best_time-t1_start)) + "\t\t\t" + str([best_tour_cost]))
 
             if display is not None:
-                display.update_plot(index, self.environment, current_solution,display_pheromone=False)
+                display.update_plot(index, self.environment, current_solution, display_pheromone=False)
                 time.sleep(0.1)
 
-        return [best_tour_cost, current_solution]
+        return [best_tour_cost, current_solution, best_time-t1_start]
 
-    def cycle(self, best_tour_cost, current_solution):
+    def cycle(self, best_tour_cost, current_solution, best_time=None):
         for ant in self.ants:
             ant.prepare_tour()
 
@@ -83,9 +83,10 @@ class AntColony:
             if ant.tour_cost < best_tour_cost:
                 best_tour_cost = ant.tour_cost
                 current_solution = copy.deepcopy(ant.tour)
+                best_time = perf_counter()
 
             ant.update_pheromone_emission_cycle()
-        return [best_tour_cost, current_solution]
+        return [best_tour_cost, current_solution, best_time]
 
 
 class Ant:
