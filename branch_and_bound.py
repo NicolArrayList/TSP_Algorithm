@@ -59,14 +59,26 @@ def exploration(mat, current_bound, current_weight, exploration_level, current_p
 
         return
 
+
+
+
     # For the other levels of exploration, we go through all vertices to build the search tree
     for i in range(N):
-
         # First, we care about not going from a vertex to the same vertex, which can't be possible in a cycle, and we
         # also check if we didn't already visit the next vertex (check if it's not already in our partial solution path)
         if mat[current_path[exploration_level - 1]][i] != 0 and visited[i] == False:
             temp_bound = current_bound
             current_weight += mat[current_path[exploration_level - 1]][i]
+
+            print("\nPartial solution : ", end=' ')
+            for k in range(len(current_path)):
+                if chr(current_path[k] + 65) == "@":
+                    print("-", end=' ')
+                else:
+                    print(chr(current_path[k] + 65), end=' ')
+            print("\nCurrently explored node : " + chr(i + 65))
+            print("Current solution weight : " + str(current_weight))
+
 
             # Update current bound depending on which level of exploration we are
             if exploration_level == 1:
@@ -140,7 +152,7 @@ def apply_BranchAndBound():
     TSP(mat)
     toc = time.perf_counter()
 
-    print("Minimum cost :", final_result)
+    print("\n\nMinimum cost :", final_result)
     print("Solution path : ", end=' ')
     for i in range(N + 1):
         print(chr(final_path[i] + 65), end=' ')
