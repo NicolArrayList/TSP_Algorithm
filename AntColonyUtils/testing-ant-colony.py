@@ -4,12 +4,6 @@ from Models.MapGenerator import MapGenerator
 from Display.Display import *
 import matplotlib.pyplot as plt
 
-matrix = [
-    [0, 2, 5],
-    [2, 0, 4],
-    [1, 8, 0]
-]
-
 
 def test():
 

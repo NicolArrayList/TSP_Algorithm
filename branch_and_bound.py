@@ -141,13 +141,8 @@ visited = [False] * N
 final_result = max_size
 
 
-def apply_BranchAndBound():
-    # Adjacency matrix from the graph example in the report
-    mat = [[0, 3, 1, 6, 1],
-           [3, 0, 5, 2, 1],
-           [1, 5, 0, 2, 3],
-           [6, 2, 2, 0, 7],
-           [1, 1, 3, 7, 0]]
+def apply_BranchAndBound(mat: list[list[int]]):
+    # mat is the adjacency matrix from the graph example in the report
 
     big_mat = [[0] * N]*N
     for i in range(N):
