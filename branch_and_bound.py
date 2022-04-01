@@ -1,4 +1,5 @@
 import math
+import random
 import time
 
 max_size = float('inf')
@@ -128,7 +129,7 @@ def TSP(mat):
 
 
 # Number of vertices
-N = 5
+N = 26
 
 # final_path is where we store the solution path
 final_path = [None] * (N + 1)
@@ -148,8 +149,14 @@ def apply_BranchAndBound():
            [6, 2, 2, 0, 7],
            [1, 1, 3, 7, 0]]
 
+    big_mat = [[0] * N]*N
+    for i in range(N):
+        for j in range(N):
+            if i != j:
+                big_mat[i][j] = random.randint(1, 10)
+
     tic = time.perf_counter()
-    TSP(mat)
+    TSP(big_mat)
     toc = time.perf_counter()
 
     print("\n\nMinimum cost :", final_result)
