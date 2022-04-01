@@ -2,6 +2,9 @@ import math
 import random
 import time
 
+# Number of vertices
+global N, final_path, visited, final_result
+
 max_size = float('inf')
 
 
@@ -60,9 +63,6 @@ def exploration(mat, current_bound, current_weight, exploration_level, current_p
 
         return
 
-
-
-
     # For the other levels of exploration, we go through all vertices to build the search tree
     for i in range(N):
         # First, we care about not going from a vertex to the same vertex, which can't be possible in a cycle, and we
@@ -79,7 +79,6 @@ def exploration(mat, current_bound, current_weight, exploration_level, current_p
                     print(chr(current_path[k] + 65), end=' ')
             print("\nCurrently explored node : " + chr(i + 65))
             print("Current solution weight : " + str(current_weight))
-
 
             # Update current bound depending on which level of exploration we are
             if exploration_level == 1:
@@ -128,30 +127,23 @@ def TSP(mat):
     exploration(mat, current_bound, 0, 1, current_path, visited)
 
 
-# Number of vertices
-N = 26
-
-# final_path is where we store the solution path
-final_path = [None] * (N + 1)
-
-# array to keep the visited node for each path
-visited = [False] * N
-
-# Minimum cost of the solution cycle
-final_result = max_size
-
-
 def apply_BranchAndBound(mat: list[list[int]]):
+    global N, final_path, visited, final_result
+
+    N = len(mat)
+
+    # final_path is where we store the solution path
+    final_path = [None] * (N + 1)
+
+    # array to keep the visited node for each path
+    visited = [False] * N
+
+    # Minimum cost of the solution cycle
+    final_result = max_size
+
     # mat is the adjacency matrix from the graph example in the report
-
-    big_mat = [[0] * N]*N
-    for i in range(N):
-        for j in range(N):
-            if i != j:
-                big_mat[i][j] = random.randint(1, 10)
-
     tic = time.perf_counter()
-    TSP(big_mat)
+    TSP(mat)
     toc = time.perf_counter()
 
     print("\n\nMinimum cost :", final_result)
