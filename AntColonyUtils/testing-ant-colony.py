@@ -9,7 +9,7 @@ def test():
 
     mg = MapGenerator(12, 100, 100)
 
-    environment = Graph(mg)
+    environment = Graph(mg.distance_matrix, mg.points)
 
     #display = Display()
 
