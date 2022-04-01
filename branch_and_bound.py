@@ -146,7 +146,8 @@ def apply_BranchAndBound(mat: list[list[int]]):
     TSP(mat)
     toc = time.perf_counter()
 
-    print("\n\nMinimum cost :", final_result)
+    print("\nBRANCH AND BOUND RESULT")
+    print("Minimum cost :", final_result)
     print("Solution path : ", end=' ')
     for i in range(N + 1):
         print(chr(final_path[i] + 65), end=' ')

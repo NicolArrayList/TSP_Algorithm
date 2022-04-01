@@ -25,10 +25,10 @@ ACO = AntColony(
 
 result = ACO.run_colony(1, display=None)
 
-print("\nBest solution : \n - Best path : ", end=' ')
+apply_BranchAndBound(mat)
+
+print("\nANT COLONY RESULT")
+print("Best solution : \n - Best path : ", end=' ')
 for i in range(len(result[1])):
     print(chr(result[1][i] + 65), end=' ')
 print("\n - Best cost : " + str(result[0]))
-
-
-apply_BranchAndBound(mat)
