@@ -5,13 +5,16 @@ from AntColonyUtils.Display.Display import *
 
 from branch_and_bound import *
 
+# Matrix from the branch and bound example in the report
 mat = [[0, 3, 1, 6, 1],
        [3, 0, 5, 2, 1],
        [1, 5, 0, 2, 3],
        [6, 2, 2, 0, 7],
        [1, 1, 3, 7, 0]]
 
-mg = MapGenerator(11, 100, 100)
+vertex_number = 10
+
+mg = MapGenerator(vertex_number, 100, 100)
 
 environment = Graph(mg.distance_matrix)
 
