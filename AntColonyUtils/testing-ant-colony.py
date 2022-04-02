@@ -11,7 +11,7 @@ def test():
 
     environment = Graph(mg.distance_matrix, mg.points)
 
-    #display = Display()
+    display = Display()
 
     result = list()
 
@@ -22,7 +22,7 @@ def test():
         pheromone_factor=1,
         pheromone_dissipation=0.2,
         heuristic_factor=3)
-    result1 = ACO1.run_colony(75, display=None)
+    result1 = ACO1.run_colony(75, display=display)
     result.append(result1[1])
     print(result1)
 

@@ -24,7 +24,7 @@ class Display:
         return len(self.points) - 1
 
     def update_plot(self, index, environment, path, display_pheromone: bool = False):
-        points = environment.map
+        points = environment.points
 
         ax = self.axs[index]
 
