@@ -99,7 +99,7 @@ class AntColony:
             print("\nCurrent solution : \n - current path : ", end=' ')
             for i in range(len(current_solution)):
                 print(chr(current_solution[i] + 65), end=' ')
-            print("\n - current cost : " + str(best_tour_cost))
+            print("\n - current cost : " + str(best_tour_cost) + "\n")
 
             # Display
             if display is not None:

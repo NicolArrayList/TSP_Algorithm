@@ -11,9 +11,9 @@ mat = [[0, 3, 1, 6, 1],
        [6, 2, 2, 0, 7],
        [1, 1, 3, 7, 0]]
 
-mg = MapGenerator(5, 100, 100)
+mg = MapGenerator(11, 100, 100)
 
-environment = Graph(mat)
+environment = Graph(mg.distance_matrix)
 
 ACO = AntColony(
        environment,
@@ -25,9 +25,11 @@ ACO = AntColony(
 
 result = ACO.run_colony(3, display=None)
 
-apply_BranchAndBound(mat)
+apply_BranchAndBound(mg.distance_matrix)
 
-print("\nANT COLONY RESULT")
+print("\n-----------------")
+print("ANT COLONY RESULT")
+print("-----------------")
 print(" - Best path : ", end=' ')
 for i in range(len(result[1])):
     print(chr(result[1][i] + 65), end=' ')
