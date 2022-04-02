@@ -51,18 +51,20 @@ class AntColony:
 
         index = None
 
+        print("-----------------")
+        print("ANT COLONY METHOD")
+        print("-----------------")
         if display is not None:
             index = display.register_plot()
 
         for it in range(iteration):
-            [best_tour_cost, current_solution, best_time] = self.cycle(best_tour_cost, current_solution)
+            [best_tour_cost, current_solution, best_time] = self.cycle(best_tour_cost, current_solution, best_time)
             self.update_pheromone()
 
             print("\nCurrent solution : \n - current path : ", end=' ')
             for i in range(len(current_solution)):
                 print(chr(current_solution[i] + 65), end=' ')
-            print("\n - current cost : " + str(best_tour_cost), end=' ')
-            print("\n - current time elapsed : " + ("%.6f" % (best_time-t1_start)) + "\t\t\t" + str([best_tour_cost]))
+            print("\n - current cost : " + str(best_tour_cost))
 
             if display is not None:
                 display.update_plot(index, self.environment, current_solution, display_pheromone=False)

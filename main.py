@@ -23,12 +23,12 @@ ACO = AntColony(
        pheromone_dissipation=0.2,
        heuristic_factor=0.01)
 
-result = ACO.run_colony(1, display=None)
+result = ACO.run_colony(3, display=None)
 
 apply_BranchAndBound(mat)
 
 print("\nANT COLONY RESULT")
-print("Best solution : \n - Best path : ", end=' ')
+print(" - Best path : ", end=' ')
 for i in range(len(result[1])):
     print(chr(result[1][i] + 65), end=' ')
 print("\n - Best cost : " + str(result[0]))
