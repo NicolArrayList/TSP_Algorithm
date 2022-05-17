@@ -6,40 +6,40 @@ import matplotlib.pyplot as plt
 
 
 def test():
-
-    mg = MapGenerator(12, 100, 100)
+    mg = MapGenerator(50, 100, 100)
 
     environment = Graph(mg.distance_matrix, mg.points)
 
-    display = Display()
+    display = Display(display_pheromone=True)
 
     result = list()
 
     ACO1 = AntColony(
         environment,
-        ant_amount=20,
+        ant_amount=10,
         pheromone_intensity=1,
-        pheromone_factor=1,
+        pheromone_factor=2,
         pheromone_dissipation=0.2,
-        heuristic_factor=3)
-    result1 = ACO1.run_colony(75, display=display)
+        heuristic_factor=3,
+        display=display)
+    result1 = ACO1.run_colony(25)
     result.append(result1[1])
     print(result1)
 
-    plt.ioff()
-    plt.show(block=True)
-
-    """ACO2 = AntColony(
+    ACO2 = AntColony(
         environment,
         ant_amount=7,
         pheromone_intensity=0.5,
         pheromone_factor=3,
         pheromone_dissipation=0.3,
-        heuristic_factor=5)
+        heuristic_factor=5,
+        display=display)
     result2 = ACO2.run_colony(5)
     result.append(result2[1])
     print(result2)
 
+
+    """
     ACO3 = AntColony(
         environment,
         ant_amount=7,
@@ -66,4 +66,8 @@ def test():
     """
 
 
-test()
+if __name__ == "__main__":
+    test()
+
+    plt.ioff()
+    plt.show(block=True)
