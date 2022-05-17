@@ -33,7 +33,13 @@ Colonies paramters :
 
 - iteration : number of iteration for each ant before stopping the colony
 
+NOTE : pheromone_display is a work in progress don't use it with too many points !
+
 See the PDF presentation for more details !
 
 Thank you
+
+Pheromone display :
+
+![alt text](https://github.com/NicolArrayList/TSP_Algorithm/blob/main/other/ScreenShots/Capture%20d’écran%202022-05-16%20235613.png)
 
