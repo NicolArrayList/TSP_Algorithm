@@ -1,5 +1,37 @@
-# Solving the TSP problem
-Run the main.py file to solve the problem with the branch and bound and the ant 
-colony methods.
+# Solving the TSP problem with Ant Colony and Branch and Bounds
+
+Intro
+
+This solution is working under python 3.9, you'll need matplotlib to see the main_ant_colony.py work. 
+We strongly advise you to use PyCharm.
+
+1) Run the main.py file to solve the problem with the branch and bound and the ant colony methods.
 To change the size of the graph to solve, change the vertex_number value in main.py.
+
+2) Run main_ant_colony.py to see 3 ant colonies working with different parameters. Each colony work with it's own thread :
+
+//Image
+
+By updating values in the main_ant_colony.py, you can change the size and the number of points in the environment.
+You can also change colonies parameters. Everything is at the beginning of the file.
+
+//Image
+
+Colonies paramters :
+
+- Q : pheromone constant 
+
+- a : pheromone exponent, defines the importance of pheromones in the ant's decision
+
+- b : heuristic exponent, defines the importance of heuristic (nearest neighbor) in the ant's decision
+
+- P : pheromone disipation (0 : no dissipation, 1 : total dissipation)
+
+- n : number of ants
+
+- iteration : number of iteration for each ant before stopping the colony
+
+See the PDF presentation for more details !
+
+Thank you
 
