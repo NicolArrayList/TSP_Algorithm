@@ -26,9 +26,13 @@ points_in_environment = 50
 # ]
 
 # ---- Colony parameters --- #
-colony_1 = [25, 0, 0, 1, 5, 25]
-colony_2 = [25, 1, 2, 0.2, 5, 25]
-colony_3 = [25, 1, 5, 0.2, 4, 25]
+colony_1 = [5, 0, 0, 1, 5, 25]
+colony_2 = [5, 1, 2, 0.2, 5, 25]
+colony_3 = [5, 1, 5, 0.2, 4, 25]
+
+# ---- Display ---- #
+pheromone_display = True
+# WARNING pheromone_display cause lag with too many points in environments
 
 
 def prepare_environment(points_amount, width, height):
@@ -44,7 +48,7 @@ def main():
     thread_start = False
     sync = list()
 
-    display = Display(display_pheromone=False)
+    display = Display(display_pheromone=pheromone_display)
     t_display = threading.Thread(target=display_controller_thread, args=[1])
     t_display.start()
 
