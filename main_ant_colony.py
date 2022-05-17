@@ -9,6 +9,27 @@ from AntColonyUtils.Display.Display import *
 
 global display, world, t_ACO, sync, thread_start, update_display, processing
 
+# ---- Environment parameters ---- #
+
+environment_size_x = 1000
+environment_size_y = 1000
+points_in_environment = 50
+
+# colony_example =
+# [
+#   number of ants,
+#   pheromone constant,
+#   pheromone exposant,
+#   dissipation,
+#   heuristic exposant,
+#   iterations
+# ]
+
+# ---- Colony parameters --- #
+colony_1 = [25, 0, 0, 1, 5, 25]
+colony_2 = [25, 1, 2, 0.2, 5, 25]
+colony_3 = [25, 1, 5, 0.2, 4, 25]
+
 
 def prepare_environment(points_amount, width, height):
     global world
@@ -29,14 +50,12 @@ def main():
 
     t_ACO = list()
 
-    prepare_environment(150, 1000, 1000)
-
-    iteration = 25
+    prepare_environment(points_in_environment, environment_size_x, environment_size_y)
 
     args = [
-        [25, 0, 0, 1, 5, iteration],
-        [25, 1, 2, 0.2, 5, iteration],
-        [25, 1, 5, 0.2, 4, iteration]
+        colony_1,
+        colony_2,
+        colony_3
     ]
 
     for i in range(len(args)):
