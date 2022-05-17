@@ -5,17 +5,19 @@ Intro
 This solution is working under python 3.9, you'll need matplotlib to see the main_ant_colony.py work. 
 We strongly advise you to use PyCharm.
 
+! ANT COLONY IS STILL A WORK IN PROGRESS !
+
 1) Run the main.py file to solve the problem with the branch and bound and the ant colony methods.
 To change the size of the graph to solve, change the vertex_number value in main.py.
 
-2) Run main_ant_colony.py to see 3 ant colonies working with different parameters. Each colony work with it's own thread :
+2) Run main_ant_colony.py to see 3 ant colonies working with different parameters live. Each colony work with it's own thread :
 
-//Image
+![alt text](https://github.com/NicolArrayList/TSP_Algorithm/blob/main/other/ScreenShots/Capture%20d’écran%202022-05-16%20233555.png)
 
 By updating values in the main_ant_colony.py, you can change the size and the number of points in the environment.
 You can also change colonies parameters. Everything is at the beginning of the file.
 
-//Image
+![alt text](https://github.com/NicolArrayList/TSP_Algorithm/blob/main/other/ScreenShots/Capture%20d’écran%202022-05-16%20234324.png)
 
 Colonies paramters :
 
