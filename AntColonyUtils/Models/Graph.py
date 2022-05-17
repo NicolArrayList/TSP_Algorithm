@@ -10,6 +10,10 @@ class Graph:
         self.points = points
         self.distance_matrix = distance_matrix
         self.size = len(self.distance_matrix)
+        self.pheromone = list(list())
+        self.reset_pheromones()
+
+    def reset_pheromones(self):
         self.pheromone = [[1 / self.size for _ in range(self.size)] for _ in range(self.size)]
 
     def copy_as_blank_matrix(self):

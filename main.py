@@ -1,7 +1,6 @@
 from AntColonyUtils.Models.Graph import Graph
 from AntColonyUtils.Models.AntColony import AntColony
 from AntColonyUtils.Models.MapGenerator import MapGenerator
-from AntColonyUtils.Display.Display import *
 
 from branch_and_bound import *
 
@@ -26,7 +25,7 @@ ACO = AntColony(
        pheromone_dissipation=0.2,
        heuristic_factor=0.01)
 
-result = ACO.run_colony(3, display=None)
+result = ACO.run_colony(3)
 
 apply_BranchAndBound(mg.distance_matrix)
 

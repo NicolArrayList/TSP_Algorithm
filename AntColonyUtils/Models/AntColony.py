@@ -16,6 +16,7 @@ class AntColony:
             pheromone_factor: float,
             pheromone_dissipation: float,
             heuristic_factor: float,
+            display: Display = None
     ):
         """
         The AntColony class is responsible for the management of the ant colony.
@@ -49,6 +50,13 @@ class AntColony:
         self.b = heuristic_factor
         self.P = (1 - pheromone_dissipation)
 
+        self.display = display
+        # Index is used to find the plot in various subplot
+        self.index = None
+
+        if self.display is not None:
+            self.index = self.display.register_plot(self.environment)
+
     def update_pheromone(self):
         """
         This method update the pheromone value of the environment based on ant deposits.
@@ -61,11 +69,11 @@ class AntColony:
                 for ant in self.ants:
                     self.environment.pheromone[i][j] += ant.emission_map[i][j]
 
-    def run_colony(self, iteration: int, display: Display = None):
+    def run_colony(self, iteration: int, pause_delay=0, console_revue=False):
         """
-
+        :param console_revue:
+        :param pause_delay:
         :param iteration: Number of iteration done before ending the graph exploration
-        :param display: if you want a pyplot display or not
         :return: [the best cost tour, the path to do it, elapsed time find it]
         """
         t1_start = perf_counter()
@@ -76,38 +84,45 @@ class AntColony:
         current_solution = []
         # No current best time
         best_time = 0
+        # No current best it
+        best_it = None
 
-        # Index is used to find the plot in various subplot
-        index = None
-
-        print("-----------------")
-        print("ANT COLONY METHOD")
-        print("-----------------")
-        if display is not None:
-            index = display.register_plot()
+        if console_revue:
+            print("-----------------")
+            print("ANT COLONY METHOD")
+            print("-----------------")
 
         # Iterations start here
         for it in range(iteration):
             # For each iteration we send our ants to find the best path
-            [best_tour_cost, current_solution, best_time] = self.cycle(best_tour_cost, current_solution, best_time)
+            [best_tour_cost, current_solution, best_time] = \
+                self.cycle(
+                    best_tour_cost,
+                    current_solution,
+                    best_time
+                )
 
             # After all ants completed their work, we can update pheromones
             # This can be done during the exploration. However, it's simpler this way
             self.update_pheromone()
 
             # Console revue
-            print("\nCurrent solution : \n - current path : ", end=' ')
-            for i in range(len(current_solution)):
-                print(chr(current_solution[i] + 65), end=' ')
-            print("\n - current cost : " + str(best_tour_cost) + "\n")
+            if console_revue:
+                print("\nCurrent solution : \n - current path : ", end=' ')
+                for i in range(len(current_solution)):
+                    print(chr(current_solution[i] + 65), end=' ')
+                print("\n - current cost : " + str(best_tour_cost) + "\n")
 
             # Display
-            if display is not None:
-                display.update_plot(index, self.environment, current_solution, display_pheromone=True)
-                time.sleep(0.5)
+            if self.display is not None:
+                title = self.description() + \
+                        " Cost : " + ("%.5f" % best_tour_cost) + \
+                        " Time : " + ("%.5f" % (best_time - t1_start))
+                self.display.update_plot_values(self.index, self.environment, current_solution, title)
+                time.sleep(pause_delay)
 
         # We return the best we got
-        return [best_tour_cost, current_solution, best_time-t1_start]
+        return [best_tour_cost, current_solution, (best_time-t1_start)]
 
     def cycle(self, best_tour_cost, current_solution, best_time=None):
         """
@@ -136,11 +151,19 @@ class AntColony:
             if ant.tour_cost < best_tour_cost:
                 best_tour_cost = ant.tour_cost
                 current_solution = copy.deepcopy(ant.tour)
+
                 best_time = perf_counter()
 
             # Update the pheromone map deposits of the ant
             ant.update_pheromone_emission_cycle()
         return [best_tour_cost, current_solution, best_time]
+
+    def description(self):
+        return '(Q : ' + str(self.Q) + \
+              '; a : ' + str(self.a) + \
+              '; b : ' + str(self.b) + \
+              '; P : ' + str(self.P) + \
+              '; n : ' + str(self.ants_amount) + ')'
 
 
 class Ant:
@@ -199,7 +222,6 @@ class Ant:
             if self.allowed[i] != 0:
                 if tau_sum == 0.0:
                     probabilities[i] = 1
-                    print(probabilities)
                 else:
                     probabilities[i] /= tau_sum
 
